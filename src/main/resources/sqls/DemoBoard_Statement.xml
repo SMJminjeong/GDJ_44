@@ -5,10 +5,24 @@
 <select id="selectBoardAll" resultType="BoardVo">
    SELECT SEQ, ID, TITLE, STEP, "DEPTH" , REFER , DELFLAG , READCOUNT , REGDATE 
    	FROM DEMOBOARD 
-   	 	<if test="auth == 'U'.toString()">
 	   		WHERE DELFLAG ='N'
-	 	</if>
 	 		ORDER BY REFER DESC, STEP ASC
 </select>
+<!-- 2-1) 게시글 상세 조회 -->
+<select id="selectBoardDetail" parameterType="java.lang.String" resultType="BoardVo">
+	 SELECT SEQ, ID, TITLE, CONTENT, REFER, STEP, DEPTH, DELFLAG,READCOUNT , REGDATE
+		FROM DEMOBOARD 
+	 		WHERE SEQ = #{seq}
+</select>
+<!-- 2-2) 게시글 상세조회시 조회수+1 -->
+<update id="updateReadcount" parameterType="java.util.Map">
+UPDATE DEMOBOARD SET READCOUNT = READCOUNT +1 WHERE SEQ = #{seq}
+</update>
+
+<!-- 3) 게시글 새로 등록 -->
+<insert id="insertBoardRoot" parameterType="java.util.Map">
+INSERT INTO DEMOBOARD (SEQ, ID, TITLE, CONTENT, STEP, "DEPTH", REFER, READCOUNT, DELFLAG, REGDATE)
+	VALUES (DEMOBOARD_SEQ.NEXTVAL, #{id}, #{title}, #{content}, 0, 0, (SELECT NVL(MAX(REFER),0)+1 FROM DEMOBOARD), 0, 'N', SYSDATE)
+</insert>
 
 </mapper>

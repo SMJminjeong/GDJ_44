@@ -23,6 +23,21 @@ public class BoardDaoImpl implements IBoardDao{
 		return sqlSession.selectList(NS+"selectBoardAll",mVo);
 	}
 
+	@Override
+	public BoardVo selectBoardDetail(String seq) {
+		return sqlSession.selectOne(NS+"selectBoardDetail",seq);
+	}
+
+	@Override
+	public int updateReadcount(String seq) {
+		return sqlSession.update(NS+"updateReadcount",seq);
+	}
+
+	@Override
+	public int insertBoardRoot(Map<String, Object> map) {
+		return sqlSession.insert(NS+"insertBoardRoot", map);
+	}
+
 
 
 

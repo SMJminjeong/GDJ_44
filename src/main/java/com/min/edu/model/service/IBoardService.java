@@ -1,11 +1,18 @@
 package com.min.edu.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.min.edu.vo.BoardVo;
 import com.min.edu.vo.MemberVo;
 
 public interface IBoardService{
-
+	//1) 전체글보기
 	public List<BoardVo> selectBoardAll(MemberVo mVo);
+	
+	//2-1) 상세글보기
+	public BoardVo selectBoardDetail(String seq);
+
+	//3) 게시글 새로 등록
+	public int insertBoardRoot(Map<String, Object> map);
 }

@@ -26,4 +26,18 @@ public class BoardServiceImpl implements IBoardService{
 		return dao.selectBoardAll(mVo);
 	}
 
+	@Override
+	public BoardVo selectBoardDetail(String seq) {
+		log.info("BoardServiceImpl : selectBoardDetail 상세 조회 : {}", seq);
+		dao.updateReadcount(seq);
+		return dao.selectBoardDetail(seq);
+	}
+
+	@Override
+	public int insertBoardRoot(Map<String, Object> map) {
+		log.info("BoardServiceImpl : insertBoardRoot 새로 등록 : {}", map);
+		return dao.insertBoardRoot(map);
+	}
+
+
 }

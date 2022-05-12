@@ -19,10 +19,13 @@
 						
 						<nav>
 		<li><a href="./boardList.do" class="button primary">BOARD</a></li>
+		        		  
 							<a href="#menu">Menu</a>
 											<ul>
 							<li><a>------</a></li>
 								<c:if test="${mem!=null}">
+								<li><a href="./boardList.do" class="button primary">BOARD</a></li>
+								<li><a href="./boardWrite.do">글작성</a></li>	
 									<span>${mem.name}님 환영합니다! (${mem.auth=='ROLE_USER'?"사용자":"관리자"})</span>
 									<li><a href="./logout.do" class="button primary">LOG - OUT</a></li>
 									
