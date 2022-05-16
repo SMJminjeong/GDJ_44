@@ -15,14 +15,14 @@ import lombok.ToString;
 @ToString
 public class BoardVo {
 
-	private String seq;
+	private int seq;
 	private String id;
 	private String title;
 	private String content;
-	private String step;
-	private String depth;
-	private String refer;
-	private String readcount;
+	private int step;
+	private int depth;
+	private int refer;
+	private int readcount;
 	private String delflag;
 	private String regdate;
 }

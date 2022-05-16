@@ -18,14 +18,25 @@
 						<a href="./main.do" class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>
 						
 						<nav>
-		<li><a href="./boardList.do" class="button primary">BOARD</a></li>
 		        		  
+		        		  <!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="landing.html">Landing</a></li>
+							<li><a href="generic.html">Generic</a></li>
+							<li><a href="elements.html">Elements</a></li>
+						</ul>
+						<ul class="actions stacked">
+							<li><a href="#" class="button primary fit">Get Started</a></li>
+							<li><a href="#" class="button fit">Log In</a></li>
+						</ul>
+					</nav>
 							<a href="#menu">Menu</a>
 											<ul>
-							<li><a>------</a></li>
 								<c:if test="${mem!=null}">
 								<li><a href="./boardList.do" class="button primary">BOARD</a></li>
-								<li><a href="./boardWrite.do">글작성</a></li>	
+								<li><a href="./boardWriteForm.do">글작성</a></li>	
 									<span>${mem.name}님 환영합니다! (${mem.auth=='ROLE_USER'?"사용자":"관리자"})</span>
 									<li><a href="./logout.do" class="button primary">LOG - OUT</a></li>
 									

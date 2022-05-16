@@ -16,6 +16,8 @@
 				      	<div id="panel-id">
 				      	아이디 : ${vo.id}
 						작성일 : ${vo.regdate}
+								파일명:${fileObj.filename}<br>
+		설명:${fileObj.desc}<br>
 						</div>
 			      </div>
 			      <div class="panel-body">내용 : ${vo.content}</div>

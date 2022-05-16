@@ -34,11 +34,9 @@ public class BoardDaoImpl implements IBoardDao{
 	}
 
 	@Override
-	public int insertBoardRoot(Map<String, Object> map) {
-		return sqlSession.insert(NS+"insertBoardRoot", map);
+	public int insertBoardRoot(BoardVo bVo) {
+		return sqlSession.insert(NS+"insertBoardRoot", bVo);
 	}
-
-
 
 
 

@@ -17,5 +17,7 @@ public interface IBoardDao {
 	public int updateReadcount(String seq);
 	
 	//3) 게시글 새로 등록
-	public int insertBoardRoot(Map<String, Object> map);
+	public int insertBoardRoot(BoardVo bVo);
+
+	
 }

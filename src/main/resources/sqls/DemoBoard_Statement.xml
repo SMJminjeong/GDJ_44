@@ -20,9 +20,13 @@ UPDATE DEMOBOARD SET READCOUNT = READCOUNT +1 WHERE SEQ = #{seq}
 </update>
 
 <!-- 3) 게시글 새로 등록 -->
-<insert id="insertBoardRoot" parameterType="java.util.Map">
+<insert id="insertBoardRoot" parameterType="BoardVo">
+<selectKey keyProperty="seq" resultType="java.lang.Integer" order="BEFORE">
+		SELECT DEMOBOARD_SEQ.NEXTVAL AS SEQ FROM DUAL
+	</selectKey>
 INSERT INTO DEMOBOARD (SEQ, ID, TITLE, CONTENT, STEP, "DEPTH", REFER, READCOUNT, DELFLAG, REGDATE)
-	VALUES (DEMOBOARD_SEQ.NEXTVAL, #{id}, #{title}, #{content}, 0, 0, (SELECT NVL(MAX(REFER),0)+1 FROM DEMOBOARD), 0, 'N', SYSDATE)
+	VALUES (#{seq}, #{id}, #{title}, #{content}, 0, 0, (SELECT NVL(MAX(REFER),0)+1 FROM DEMOBOARD), 0, 'N', SYSDATE)
 </insert>
+
 
 </mapper>

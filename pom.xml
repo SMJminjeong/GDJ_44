@@ -181,12 +181,24 @@
 			    <artifactId>commons-fileupload</artifactId>
 			    <version>1.4</version>
 			</dependency>
+		
+		<!-- transaction 처리 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-		</dependency>        
+		</dependency>      
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-test</artifactId>
+    		<version>${org.springframework-version}</version>
+		</dependency>  
 	</dependencies>
     <build>
     <finalName>20220508_DemoProject</finalName>
