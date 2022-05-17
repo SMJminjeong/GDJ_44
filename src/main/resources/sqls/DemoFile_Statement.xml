@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.min.edu.model.mapper.FileDaoImpl">
-<!-- 1) 게시글 전체 조회 -->
 
 <!-- 3-1)게시글 새로 등록 시 첨부파일 추가 -->
 <insert id="insertBoardFile" parameterType="BoardVo">

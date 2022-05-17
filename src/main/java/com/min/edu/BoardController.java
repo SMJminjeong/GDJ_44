@@ -45,7 +45,7 @@ public class BoardController {
 	//1) 게시글 전체조회
 	@RequestMapping(value = "/boardList.do", method = RequestMethod.GET)
 	public String boardList(MemberVo mVo, Model model) {
-		log.info("********* Welcome boardList! BoardController 전체조회 boardList *********");
+		log.info("********* Welcome Board_Controller boardList! BoardController 전체조회 boardList *********");
 		
 		List<BoardVo> lists = iService.selectBoardAll(mVo);
 //		for (BoardVo vo : lists) {			
@@ -57,7 +57,7 @@ public class BoardController {
 	//2) 게시글 상세조회
 	@RequestMapping(value = "/detailBoard.do", method = RequestMethod.GET)
 	public String selectBoardDetail(@RequestParam("seq") String id, Model model, String seq) {
-		log.info("********* Welcome selectBoardDetail! BoardController 상세조회 getOneBoard *********");
+		log.info("********* Welcome Board_Controller selectBoardDetail! BoardController 상세조회 getOneBoard *********");
 		BoardVo vo = iService.selectBoardDetail(seq);
 		model.addAttribute("vo", vo);
 		return "detailBoard";
@@ -66,7 +66,7 @@ public class BoardController {
 	//3-1) 게시글 새글 등록 화면으로 이동
 	@RequestMapping(value = "/boardWriteForm.do", method = RequestMethod.GET)
 	public String boardWriteForm() {
-		log.info("********* Welcome boardWrite! 게시글 새글 등록 화면으로 이동합니다. *********");
+		log.info("********* Welcome Board_Controller boardWrite! 게시글 새글 등록 화면으로 이동합니다. *********");
 		return "boardWrite";
 	}
    // 3-2) 게시글 새글 등록
@@ -100,7 +100,7 @@ public class BoardController {
   
     @RequestMapping(value = "/logout.do" , method = RequestMethod.GET)
     public String logout(HttpSession session) {
-    	log.info("로그아웃한다");
+    	log.info("********* Welcome logout! 로그아웃합니다. *********");
     	session.invalidate();
     	return "redirect:/main.do";
     }

@@ -36,8 +36,6 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class FileUploadController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
-	
 
 	@Autowired
 	private IBoardService iService;
@@ -45,7 +43,7 @@ public class FileUploadController {
 	
 	@RequestMapping(value="/uploadForm.do", method = RequestMethod.GET)
 	public String uploadForm() {
-		logger.info("fileUploadController 파일 업로드 Form으로 이동");
+		log.info("********* Welcome FileUpload_Controller fileUploadController! 파일 업로드 Form으로 이동 *********");
 		return "uploadForm";
 	}
 	
@@ -53,8 +51,7 @@ public class FileUploadController {
 	public String fileUpload(@RequestParam Map<String, Object> map, FileVo filevo,
 			HttpSession session,@SessionAttribute("mem") MemberVo mVo,HttpServletResponse response,HttpServletRequest request,Model model, BindingResult result) throws Exception {
    	
-        log.info("BoardController 새글 입력 insertBoardRoot", map);
-		logger.info("fileUploadController 파일 업로드");
+        log.info("********* Board_Controller 새글 입력 insertBoardRoot *********", map);
 		
 		   //파일 받아 옴 
 	      MultipartFile file = filevo.getFile();
