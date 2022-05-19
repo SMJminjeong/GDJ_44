@@ -33,10 +33,20 @@ public class BoardDaoImpl implements IBoardDao{
 		return sqlSession.update(NS+"updateReadcount",seq);
 	}
 
+//	@Override
+//	public int insertBoardRoot(BoardVo bVo) {
+//		return sqlSession.insert(NS+"insertBoardRoot", bVo);
+//	}
+
 	@Override
-	public int insertBoardRoot(BoardVo bVo) {
-		return sqlSession.insert(NS+"insertBoardRoot", bVo);
+	public void write(BoardVo bVo) {
+		sqlSession.insert(NS+"write", bVo);
 	}
+	@Override
+	public void insertFile(Map<String, Object> map) throws Exception {
+		 sqlSession.insert(NS+"insertFile",map);
+	}
+
 
 
 

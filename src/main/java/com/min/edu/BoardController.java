@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.min.edu.model.service.IBoardService;
@@ -97,6 +98,14 @@ public class BoardController {
 //       }
 //       return "redirect:/boardList.do";
 //    }
+	
+	@RequestMapping(value = "/boardWrite.do", method = RequestMethod.POST)
+	public String write(BoardVo bVo, MultipartHttpServletRequest mpRequest) throws Exception {
+		log.info("********* Welcome write! 글작성+첨부파일입니다. *********");
+		iService.write(bVo, mpRequest);
+		
+		return "redirect:/boardList.do";
+	}
   
     @RequestMapping(value = "/logout.do" , method = RequestMethod.GET)
     public String logout(HttpSession session) {

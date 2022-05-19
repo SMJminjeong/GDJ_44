@@ -17,7 +17,11 @@ public interface IBoardDao {
 	public int updateReadcount(String seq);
 	
 	//3) 게시글 새로 등록
-	public int insertBoardRoot(BoardVo bVo);
-
+//	public int insertBoardRoot(BoardVo bVo);
+	//----------------------------따라해보기--------------------
+	//3) 게시글 새로 등록
+	public void write(BoardVo bVo);
+//3-1) 첨부파일 추가
+	public void insertFile(Map<String, Object> map) throws Exception;
 	
 }

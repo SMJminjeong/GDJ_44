@@ -5,31 +5,40 @@
 	<title>MainPage</title>
 </head>
 <body>
-	<div id="wrapper">
+<!-- page-wrapper Start-->
+    <div class="page-wrapper" id="pageWrapper">
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper horizontal-menu">
 		<%@ include file="./header.jsp"  %>
-		<!-- Banner -->
-					<section id="banner" class="major">
-						<div class="inner">
-							<header class="major">
-								<h1>Hi, my name is Forty</h1>
-							</header>
-							<div class="content">
-								<p>A responsive site template designed by HTML5 UP<br />
-								and released under the Creative Commons.</p>
-								<ul class="actions">
-									<li><a href="./loginForm.do" class="button next scrolly">LOG-IN</a></li>
-									<li><a href="./dragAndDrop.do" class="button next scrolly">Drag & Drop</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-	</div>
-	
-	
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+   
+     
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-header">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h3>Layout Light</h3>
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../ltr/index.html">Home</a></li>
+                    <li class="breadcrumb-item">Starter Kit</li>
+                    <li class="breadcrumb-item">Color Version</li>
+                    <li class="breadcrumb-item active">Layout Light</li>
+                  </ol>
+                </div>
+                <div class="col-sm-6">
+   
+               
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+ 
+    
+ 
+   
+		<%@ include file="./footer.jsp"  %>
+		</div>
+		</div>
 </body>
 </html>

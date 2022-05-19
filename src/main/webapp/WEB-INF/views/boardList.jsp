@@ -10,63 +10,97 @@
 <title>게시글 전체보기</title>
 <script type="text/javascript">
 
-	
+   
 </script>
 </head>
 
 <body>
-	<div id="wrapper">
-		<%@ include file="./header.jsp"%>
-     <input type="hidden" name="index" id="index" value="${row.index}">
-      <input type="hidden" name="pageNum" id="pageNum" value="${row.pageNum}">
-      <input type="hidden" name="listNum" id="listNum" value="${row.listNum}">
-      
-      <div style="text-align: center;">
-      	 <ul class="pagination pagination">
-      	 	<li><a href="#" onclick="pageFirst()"><span class="glyphicon glyphicon-fast-backward"></span></a></li>
-      	 	<li><a href="#" onclick="pagePrev(${row.pageNum}, ${row.pageList})"><span class="glyphicon glyphicon-step-backward"></span></a></li>      	 	
-      	 	<c:forEach var="i" begin="${row.pageNum}" end="${row.count}" step="1">
-			   <li ${(i-1) == row.index ? "class='active'" : ""}><a href="#" onclick="pageIndex('${i}')">${i}</a></li>
-      	 	</c:forEach>
-      	 	<li><a href="#" onclick="pageNext(${row.pageNum},${row.total},${row.listNum},${row.pageList})"><span class="glyphicon glyphicon-step-forward"></span></a></li>
-      	 	<li><a href="#" onclick="pageLast()"><span class="glyphicon glyphicon-fast-forward"></span></a></li>    
-		  </ul>
-      </div>
-<div class="container">
-  <h2>[ 전체 게시글 ]</h2>
-  <p>전체 게시글입니다.</p>     
-  <div>
-	  <a href="./boardWrite.do"><input class="btn btn-primary" type="button" value="WRITE"></a>
-  </div>
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th>글번호</th>
-        <th>작성자</th>
-        <th>제목</th>
-        <th>조회수</th>
-        <th>작성일</th>
-      </tr>
-    </thead>
-   				<tbody>
-					<c:forEach var="dto" items="${lists}"  varStatus="vs">
-						<tr>
-							<td><input type="checkbox" name="chkVal" value="${dto.seq}"></td>
-							<td>${dto.id}</td>
-							<td><a href="./detailBoard.do?seq=${dto.seq}">${dto.title}</a> </td>
-							<td>${dto.readcount}</td>
-							<td>
-									<fmt:parseDate var='cDate' value="${dto.regdate}" pattern="yyyy-MM-dd"/>
-									<fmt:formatDate value="${cDate }"/>
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-  </table>
-</div>
-
-  
-</div>
+<!-- page-wrapper Start-->
+    <div class="page-wrapper" id="pageWrapper">
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper horizontal-menu">
+      <%@ include file="./header.jsp"  %>
+   
+    <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-header">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h3>Bootstrap Basic Tables</h3>
+                </div>
+                <div class="col-sm-6">
+                  <!-- Bookmark Start-->
+                  <div class="bookmark">
+                    <ul>
+                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="inbox"></i></a></li>
+                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Chat"><i data-feather="message-square"></i></a></li>
+                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Icons"><i data-feather="command"></i></a></li>
+                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Learning"><i data-feather="layers"></i></a></li>
+                      <li><a href="javascript:void(0)"><i class="bookmark-search" data-feather="star"></i></a>
+                        <form class="form-inline search-form">
+                          <div class="form-group form-control-search">
+                            <input type="text" placeholder="Search..">
+                          </div>
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Bookmark Ends-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h5>Basic Table</h5><span>Use a class<code>table</code> to any table.</span>
+                     <div>
+                 <a href="./boardWriteForm.do" style="align-content: right;"><input class="btn btn-primary" type="button" value="WRITE"></a>
+                       </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+		                     <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
+		                     	<td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td>
+		                     </c:if>
+                          <th scope="col">글번호</th>
+                          <th scope="col">작성자</th>
+                          <th scope="col">제목</th>
+                          <th scope="col">조회수</th>
+                          <th scope="col">작성일</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <c:forEach var="dto" items="${lists}"  varStatus="vs">
+                  <tr>
+                     <td><input type="checkbox" name="chkVal"></td>
+                     <td>${dto.seq}</td>
+                     <td>${dto.id}</td>
+                     <td><a href="./detailBoard.do?seq=${dto.seq}">${dto.title}</a> </td>
+                     <td>${dto.readcount}</td>
+                     <td>
+                           <fmt:parseDate var='cDate' value="${dto.regdate}" pattern="yyyy-MM-dd"/>
+                           <fmt:formatDate value="${cDate }"/>
+                     </td>
+                  </tr>
+               </c:forEach>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          </div>
+       </div>
+    </div>
  
+      <%@ include file="./footer.jsp"  %>
+      </div>
+      </div>
 </body>
 </html>
