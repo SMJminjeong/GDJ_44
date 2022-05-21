@@ -170,7 +170,8 @@
       <!-- Page Header Ends                              -->
       <!-- Page Body Start-->
       <div class="page-body-wrapper sidebar-icon">
-        <!-- Page Sidebar Start-->
+        <!-- Page Sidebar Start ------------------------------------------------------------------------------------------->
+        <!-- Page Sidebar Start ------------------------------------------------------------------------------------------->
         <header class="main-nav">
           <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="../assets/images/dashboard/1.png" alt="">
             <div class="badge-bottom"><span class="badge badge-primary">New</span></div><a href="user-profile.html">
@@ -208,6 +209,7 @@
                     </ul>
                   </li>
                 
+                <!-- --- Components ------------------------------------------------------------------------------------------------------ -->
                   <li class="sidebar-main-title">
                     <div>
                       <h6>Components             </h6>
@@ -240,15 +242,15 @@
                       <li><a href="button-group.html">Button Group</a></li>
                     </ul>
                   </li>
-                 
+                 <!-- --- FileUpload ------------------------------------------------------------------------------------------------------ -->                
                   <li class="sidebar-main-title">
                     <div>
-                      <h6>Forms</h6>
+                      <h6>FileUpload</h6>
                     </div>
                   </li>
-                  <li class="dropdown">          <a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="sliders"></i><span>Form Controls                </span></a>
+                  <li class="dropdown">          <a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="sliders"></i><span>파일업로드              </span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="form-validation.html">Form Validation</a></li>
+                      <li><a href="./uploadForm.do">[ 파일업로드 연습 ]</a></li>
                       <li><a href="base-input.html">Base Inputs</a></li>
                       <li><a href="radio-checkbox-control.html">Checkbox & Radio</a></li>
                       <li><a href="input-group.html">Input Groups</a></li>
