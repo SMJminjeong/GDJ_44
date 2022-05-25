@@ -11,7 +11,7 @@
       <div class="page-body-wrapper horizontal-menu">
 		<%@ include file="./header.jsp"  %>
    
-     <h1>안녕</h1>
+     
         <div class="page-body">
           <div class="container-fluid">
             <div class="page-header">
