@@ -18,6 +18,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <h3>Layout Light</h3>
+                  <h3>Layout Light</h3>
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="../ltr/index.html">Home</a></li>
                     <li class="breadcrumb-item">Starter Kit</li>
