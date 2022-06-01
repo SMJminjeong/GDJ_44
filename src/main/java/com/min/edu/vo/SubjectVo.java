@@ -55,4 +55,7 @@ public class SubjectVo {
 	private String reg_auth;
 	private String reg_id;
 	
+	private String cod_code;
+	private String cod_name;
+	private String cod_tag;
 }

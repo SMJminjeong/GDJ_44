@@ -26,7 +26,7 @@
             <div class="page-header">
               <div class="row">
                 <div class="col-sm-6">
-                  <h3>Bootstrap Basic Tables</h3>
+                  <h3>과목 전체 조회</h3>
                 </div>
                 <div class="col-sm-6">
                   <!-- Bookmark Start-->
@@ -62,7 +62,7 @@
                        </div>
                   </div>
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-hover">
                       <thead>
                         <tr>
 		                     <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
@@ -71,24 +71,33 @@
                           <th scope="col">과목번호</th>
                           <th scope="col">과목명</th>
                           <th scope="col">카테고리</th>
-                          <th scope="col">관련태그</th>
                           <th scope="col">작성자</th>
                           <th scope="col">담당강사</th>
                           <th scope="col">작성일</th>
+                          <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
+                          	<th scope="col">승인여부</th>
+                          	</c:if>
                         </tr>
                       </thead>
                       <tbody>
-                      <c:forEach var="dto" items="${lists}"  varStatus="vs">
+                      <c:forEach var="vo" items="${lists}"  varStatus="vs">
                   <tr>
-                     <td><input type="checkbox" name="chkVal"></td>
-                     <td>${dto.seq}</td>
-                     <td>${dto.id}</td>
-                     <td><a href="./detailBoard.do?seq=${dto.seq}">${dto.title}</a> </td>
-                     <td>${dto.readcount}</td>
+	                  <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
+	                     <td><input type="checkbox" name="chkVal"></td>
+	                    </c:if>
+                     <td>${vo.sub_num}</td>
+                     <td><a href="./subSelectDetail.do?seq=${vo.sub_num}">${vo.sub_title}</a></td>
+                     <td>${vo.cod_name} </td>
+                     <td>${vo.sub_tag}</td>
+                     <td>${vo.sub_reg_id}</td>
+                     <td>${vo.sub_ins}</td>
                      <td>
-                           <fmt:parseDate var='cDate' value="${dto.regdate}" pattern="yyyy-MM-dd"/>
+                           <fmt:parseDate var='cDate' value="${vo.sub_regdate}" pattern="yyyy-MM-dd"/>
                            <fmt:formatDate value="${cDate }"/>
                      </td>
+                       <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
+                     		<td>${vo.sub_status}</td>
+                     	</c:if>
                   </tr>
                </c:forEach>
                         

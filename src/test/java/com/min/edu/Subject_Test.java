@@ -3,6 +3,7 @@ package com.min.edu;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.min.edu.model.mapper.SubjectDao;
+import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.MemberVo;
 import com.min.edu.vo.SubjectVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -42,8 +45,8 @@ public class Subject_Test {
 	}
 	
 	//과목 등록 (과목정보 입력 - 등록자 입력 - 커리큘럼 입력 - 강사 업데이트)
-	@Test
-	public void subInsertSubject() {
+//	@Test
+	public void subInsertSubjectTest() {
 		log.info("subInsertSubject JUnit Test 실행");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sub_title", "0602subInsertSubject/sub_title JUnit Test");
@@ -142,6 +145,36 @@ public class Subject_Test {
 //		System.out.println(result);
 //	}
 	
+//	@Test
+	public void subUpdateStatusATest() {
+		log.info("subUpdateStatusA JUnit Test 실행");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sub_num", "20220602SUB174");
+		
+		int result = sDao.subUpdateStatusA(map);
+		log.info("---------- JUnit Test/Subject_test/subUpdateStatusATest ----------");
+		log.info("---------- subUpdateStatusATest 과목상태 변경된 과목의 수 : "+result+" ----------");
+		System.out.println(result);
+	}
+	
+//	@Test
+	public void subSelectAllAdminTest() {
+		log.info("subSelectAllAdmin JUnit Test 실행");
+		MemberVo mVo = new MemberVo();
+		mVo.setId("ADMIN");
+		List<SubjectVo> lists = sDao.subSelectAllAdmin(mVo);
+		log.info("---------- JUnit Test/Subject_test/subSelectAllAdminTest ----------"
+				+ "과목 전체 리스트 :"
+				+ " {} ", lists);
+		System.out.println("과목 게시글 조회 : "+lists);
+	}
 
+	@Test
+	public void subSelectDetailTest() {
+		log.info("subSelectDetail JUnit Test 실행");
+		String sub_num = "20220602SUB173";
 
+		SubjectVo sVo =  sDao.subSelectDetail(sub_num);
+		System.out.println(sVo);
+	}
 }

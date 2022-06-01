@@ -1,11 +1,16 @@
 package com.min.edu.model.mapper;
 
+import java.util.List;
 import java.util.Map;
+
+import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.SubjectVo;
 
 
 public interface SubjectDao {
 	
-	//1)과목 등록
+	//1) 과목 등록
 	//1-1) 과목 등록시 과목정보(과목명, 과목설명, 과목카테고리코드, 과목등록자ID)입력
 	public int subInsertSubject(Map<String, Object> map);
 	//1-2) 과목 등록시 등록자정보(등록자 코드, 등록자 권한, 과목등록자ID)입력
@@ -14,4 +19,12 @@ public interface SubjectDao {
 	public int subInsertCurriculum(Map<String, Object> map);
 	//1-4) 과목 등록시 등록자 회원/강사 구분 후 강사일시 담당강사 등록, 일반회원일시 담당강사 null
 	public int subUpdateInstructor(Map<String, Object> map);
+	//1-5) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
+	public int subUpdateStatusA(Map<String, Object> map);
+	
+	//2) 과목 조회
+	//2-1) 관리자의 과목 전체목록 조회
+	public List<SubjectVo> subSelectAllAdmin(MemberVo mVo);
+	//2-2) 과목 상세 조회
+	public SubjectVo subSelectDetail(String sub_num);
 }

@@ -30,9 +30,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.min.edu.model.service.IBoardService;
+import com.min.edu.model.service.SubjectService;
 import com.min.edu.vo.BoardVo;
 import com.min.edu.vo.FileVo;
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.SubjectVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,14 +42,19 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class SubjectController {
 	
-		
-	//1) 과목 전체조회 페이지로 이동
+	@Autowired
+	private SubjectService sService;
+	
+	//2) 과목 조회
+	//2-1) 과목 전체조회 페이지로 이동
 	@RequestMapping(value = "/subjectList.do", method = RequestMethod.GET)
 	public String subjectList(MemberVo mVo, Model model) {
 		log.info("********* Welcome Board_Controller boardList! SubjectController 과목전체조회페이지로 이동합니다. subSelectSubjectAll *********");
-
+		List<SubjectVo> lists = sService.subSelectAllAdmin(mVo);
+		model.addAttribute("lists",lists);
 		return "subjectList";
 	}
+
 	//1) 과목 등록양식 페이지로 이동
 	@RequestMapping(value = "/subjectInsertForm.do", method = RequestMethod.GET)
 	public String subInsertForm(MemberVo mVo, Model model) {
