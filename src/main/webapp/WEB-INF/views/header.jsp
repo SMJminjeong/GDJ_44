@@ -199,12 +199,12 @@
                   </li>
                   <li class="sidebar-main-title">
                     <div>
-                      <h6>General             </h6>
+                      <h6>Subject</h6>
                     </div>
                   </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>Dashboard</span></a>
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>과목</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="index.html">Default</a></li>
+                      <li><a href="./subjectList.do">과목 등록</a></li>
                       <li><a href="dashboard-02.html">Ecommerce</a></li>
                     </ul>
                   </li>

@@ -2,14 +2,18 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	<typeAliases>
+	
+		<typeAlias type="java.util.Map" alias="map"/>
 		<typeAlias type="com.min.edu.vo.MemberVo" alias="MemberVo"/>
 		<typeAlias type="com.min.edu.vo.BoardVo" alias="BoardVo"/>
+		<typeAlias type="com.min.edu.vo.SubjectVo" alias="SubjectVo"/>
 <!-- 		<typeAlias type="com.min.edu.vo.FileVo" alias="FileVo"/> -->
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="sqls/DemoMember_Statement.xml"/>
 		<mapper resource="sqls/DemoBoard_Statement.xml"/>
+		<mapper resource="sqls/Subject_Statement.xml"/>
 <!-- 		<mapper resource="sqls/DemoFile_Statement.xml"/> -->
 	</mappers>
 </configuration>

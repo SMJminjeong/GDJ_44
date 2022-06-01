@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.min.edu</groupId>
-	<artifactId>20220508_DemoProject</artifactId>
-	<name>20220508_DemoProject</name>
+	<artifactId>DemoProject</artifactId>
+	<name>DemoProject</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -219,7 +219,7 @@
 		</dependency>  
 	</dependencies>
     <build>
-    <finalName>20220508_DemoProject</finalName>
+    <finalName>DemoProject</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

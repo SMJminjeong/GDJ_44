@@ -41,7 +41,7 @@
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/theme-customizer/customizer.js"></script>
+<!--     <script src="./assets/js/theme-customizer/customizer.js"></script> -->
     <!-- login js-->
     <!-- Plugin used-->
 </body>
