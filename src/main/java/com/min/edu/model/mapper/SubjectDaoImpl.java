@@ -68,12 +68,27 @@ public class SubjectDaoImpl implements SubjectDao{
 		log.info("========== subSelectAllAdmin : "+mVo+" ==========");
 		return sqlSession.selectList(NS+"subSelectAllAdmin", mVo);
 	}
-	//2-2) 과목 상세 조회
+	//2-2) 관리자의 과목 상세 조회
 	@Override
-	public SubjectVo subSelectDetail(String sub_num) {
-		log.info("========== SubjectDaoImpl/subSelectDetail ==========");
-		log.info("========== subSelectDetail : "+sub_num+" ==========");
-		return sqlSession.selectOne(NS+"subSelectDetail", sub_num);
+	public SubjectVo adminSubjectDetail(String sub_num) {
+		log.info("========== SubjectDaoImpl/adminSubjectDetail ==========");
+		log.info("========== adminSubjectDetail : "+sub_num+" ==========");
+		return sqlSession.selectOne(NS+"adminSubjectDetail", sub_num);
 	}
+	//2-3) 일반회원의 과목 전체 목록 조회
+	@Override
+	public List<SubjectVo> subSelectAllUser(MemberVo mVo) {
+		log.info("========== SubjectDaoImpl/subSelectAllUser ==========");
+		log.info("========== subSelectAllUser : "+mVo+" ==========");
+		return sqlSession.selectList(NS+"subSelectAllUser", mVo);
+	}
+	//2-4) 일반회원의 과목 상세 조회
+	@Override
+	public SubjectVo comSubjectDetail(String sub_num) {
+		log.info("========== SubjectDaoImpl/comSubjectDetail ==========");
+		log.info("========== comSubjectDetail : "+sub_num+" ==========");
+		return sqlSession.selectOne(NS+"comSubjectDetail", sub_num);
+	}
+
 
 }

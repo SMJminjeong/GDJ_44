@@ -78,7 +78,9 @@
                       <tbody>
                       <c:forEach var="dto" items="${lists}"  varStatus="vs">
                   <tr>
+                  <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
                      <td><input type="checkbox" name="chkVal"></td>
+                     </c:if>
                      <td>${dto.seq}</td>
                      <td>${dto.id}</td>
                      <td><a href="./detailBoard.do?seq=${dto.seq}">${dto.title}</a> </td>

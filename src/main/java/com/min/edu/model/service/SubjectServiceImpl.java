@@ -39,11 +39,27 @@ public class SubjectServiceImpl implements SubjectService{
 		log.info("========== SubjectServiceImpl/subSelectAllAdmin 관리자의 과목 전체목록 조회 ==========");
 		return sDao.subSelectAllAdmin(mVo);
 	}
-	//2-2) 과목 상세 조회
+	//2-1) 관리자의 과목 상세 조회
 	@Override
-	public SubjectVo subSelectDetail(String sub_num) {
-		log.info("========== SubjectServiceImpl/subSelectAllAdmin 관리자의 과목 전체목록 조회 ==========");
-		return sDao.subSelectDetail(sub_num);
+	public SubjectVo adminSubjectDetail(String sub_num) {
+		log.info("========== SubjectServiceImpl/adminSubjectDetail 관리자의 과목 상세 조회 ==========");
+		return sDao.adminSubjectDetail(sub_num);
 	}
+	//2-3) 일반회원의 과목 전체목록 조회
+	@Override
+	public List<SubjectVo> subSelectAllUser(MemberVo mVo) {
+		log.info("========== SubjectServiceImpl/subSelectAllUser 일반회원의 과목 전체목록 조회 ==========");
+		return sDao.subSelectAllUser(mVo);
+	}
+	//2-4) 일반회원의 과목 상세 조회
+	@Override
+	public SubjectVo comSubjectDetail(String sub_num) {
+		log.info("========== SubjectServiceImpl/comSubjectDetail 일반회원의 과목 상세 조회 ==========");
+		return sDao.comSubjectDetail(sub_num);
+	}
+
+
+
+
 
 }

@@ -27,25 +27,14 @@
               <div class="row">
                 <div class="col-sm-6">
                   <h3>과목 전체 조회</h3>
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-ui-home"></i></a></li>
+                    <li class="breadcrumb-item">관리자</li>
+                    <li class="breadcrumb-item">과목 승인</li>
+                    <li class="breadcrumb-item active">과목 전체 목록 조회</li>
+                  </ol>
                 </div>
                 <div class="col-sm-6">
-                  <!-- Bookmark Start-->
-                  <div class="bookmark">
-                    <ul>
-                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="inbox"></i></a></li>
-                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Chat"><i data-feather="message-square"></i></a></li>
-                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Icons"><i data-feather="command"></i></a></li>
-                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Learning"><i data-feather="layers"></i></a></li>
-                      <li><a href="javascript:void(0)"><i class="bookmark-search" data-feather="star"></i></a>
-                        <form class="form-inline search-form">
-                          <div class="form-group form-control-search">
-                            <input type="text" placeholder="Search..">
-                          </div>
-                        </form>
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- Bookmark Ends-->
                 </div>
               </div>
             </div>
@@ -54,28 +43,25 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-12">
+              
                 <div class="card">
-                  <div class="card-header">
-                    <h5>과목 전체 조회</h5><span>등록된 과목 전체목록입니다.<code></code> </span>
-                     <div>
-                 <a href="./subjectInsertForm.do" style="align-content: right;"><input class="btn btn-primary" type="button" value="과목 등록"></a>
-                       </div>
-                  </div>
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
+  				<div class="card-block row">
+                  <div class="table-responsive table-border-radius">
+                    <table class="table table-hover table-sm table-border-vertical">
+                      <thead class="bg-primary">
                         <tr>
 		                     <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
 		                     	<td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td>
 		                     </c:if>
-                          <th scope="col">과목번호</th>
-                          <th scope="col">과목명</th>
-                          <th scope="col">카테고리</th>
-                          <th scope="col">작성자</th>
-                          <th scope="col">담당강사</th>
-                          <th scope="col">작성일</th>
+                          <th scope="col"><h6 class="f-w-700">과목번호</h6></th>
+                          <th scope="col"><h6 class="f-w-700">과목명</h6></th>
+                          <th scope="col"><h6 class="f-w-700">카테고리</h6></th>
+                          <th scope="col"><h6 class="f-w-700">등록자</h6></th>
+                          <th scope="col"><h6 class="f-w-700">담당강사</h6></th>
+                          <th scope="col"><h6 class="f-w-700">작성일</h6></th>
                           <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
-                          	<th scope="col">승인여부</th>
+                          	<th scope="col"><h6 class="f-w-700">승인상태</h6></th>
+                          	<th scope="col"><h6 class="f-w-700">관리</h6></th>
                           	</c:if>
                         </tr>
                       </thead>
@@ -86,23 +72,108 @@
 	                     <td><input type="checkbox" name="chkVal"></td>
 	                    </c:if>
                      <td>${vo.sub_num}</td>
-                     <td><a href="./subSelectDetail.do?seq=${vo.sub_num}">${vo.sub_title}</a></td>
-                     <td>${vo.cod_name} </td>
-                     <td>${vo.sub_tag}</td>
+                     <td><a href="./adminSubjectDetail.do?sub_num=${vo.sub_num}">${vo.sub_title}</a></td>
+                     <td>
+                     	  <c:choose>
+                            <c:when test="${vo.cod_name  eq 'JAVA'}">
+                            <span class="badge rounded-pill" style="background-color:#006400 ">${vo.cod_name}</span>
+                            </c:when>
+                              <c:when test="${vo.cod_name eq 'C'}">
+                            <span class="badge rounded-pill" style="background-color: #AFEEEE" >${vo.cod_name}</span>
+                           </c:when>
+                            <c:when test="${vo.cod_name  eq 'HTML'}">
+                            <span class="badge rounded-pill" style="background-color:#6A5ACD ">${vo.cod_name}</span>
+                            </c:when>
+                              <c:when test="${vo.cod_name eq 'PYTHON'}">
+                            <span class="badge rounded-pill" style="background-color: #C71585" >${vo.cod_name}</span>
+                            </c:when>
+                            <c:when test="${vo.cod_name  eq 'CSS'}">
+                            <span class="badge rounded-pill" style="background-color:#FFF8DC ">${vo.cod_name}</span>
+                            </c:when>
+                              <c:when test="${vo.cod_name eq 'LINUX'}">
+                            <span class="badge rounded-pill" style="background-color: #40E0D0" >${vo.cod_name}</span>
+                            </c:when>
+                            <c:when test="${vo.cod_name  eq 'C#'}">
+                            <span class="badge rounded-pill" style="background-color:	#8FBC8F ">${vo.cod_name}</span>
+                            </c:when>
+                              <c:when test="${vo.cod_name eq 'JAVASCRIPT'}">
+                            <span class="badge rounded-pill" style="background-color:	#8A2BE2" >${vo.cod_name}</span>
+                           </c:when>
+                            <c:when test="${vo.cod_name  eq 'AI'}">
+                            <span class="badge rounded-pill" style="background-color:	#FFB6C1 ">${vo.cod_name}</span>
+                            </c:when>
+                              <c:when test="${vo.cod_name eq 'BIGDATA'}">
+                            <span class="badge rounded-pill" style="background-color: 	#000080" >${vo.cod_name}</span>
+                            </c:when>
+                            <c:when test="${vo.cod_name  eq 'DEEPLEARNING'}">
+                            <span class="badge rounded-pill" style="background-color:	#FA8072">${vo.cod_name}</span>
+                            </c:when>
+                              <c:when test="${vo.cod_name eq 'VR'}">
+                            <span class="badge rounded-pill" style="background-color: #FFA500" >${vo.cod_name}</span>
+                            </c:when>
+                            <c:when test="${vo.cod_name  eq 'AR'}">
+                            <span class="badge rounded-pill" style="background-color:	#F0E68C ">${vo.cod_name}</span>
+                            </c:when>
+                              <c:when test="${vo.cod_name eq 'EXCEL'}">
+                            <span class="badge rounded-pill" style="background-color: 	#B0C4DE" >${vo.cod_name}</span>
+                            </c:when>
+                            <c:when test="${vo.cod_name  eq 'POWERPOINT'}">
+                            <span class="badge rounded-pill" style="background-color:	#2F4F4F">${vo.cod_name}</span>
+                            </c:when>
+                              <c:when test="${vo.cod_name eq 'KOTLIN'}">
+                            <span class="badge rounded-pill" style="background-color: #D8BFD8" >${vo.cod_name}</span>
+                            </c:when>
+                            <c:when test="${vo.cod_name  eq 'SPRING'}">
+                            <span class="badge rounded-pill" style="background-color:#1E90FF ">${vo.cod_name}</span>
+                            </c:when>
+                              <c:when test="${vo.cod_name eq '기타'}">
+                            <span class="badge rounded-pill" style="background-color: #008080" >${vo.cod_name}</span>
+                            </c:when>
+                            <c:when test="${vo.cod_name  eq '형상관리'}">
+                            <span class="badge rounded-pill" style="background-color:	#FFD700">${vo.cod_name}</span>
+                            </c:when>
+                              <c:when test="${vo.cod_name eq 'DATABASE'}">
+                            <span class="badge rounded-pill" style="background-color: #A52A2A" >${vo.cod_name}</span>
+                            </c:when>
+                            <c:otherwise>
+                            	 <span class="badge rounded-pill" style="background-color: 	#556B2F" >${vo.cod_name}</span>
+                            </c:otherwise>
+                            </c:choose>
+                     </td>
                      <td>${vo.sub_reg_id}</td>
+                     <c:if test="${vo.sub_ins != null}">
                      <td>${vo.sub_ins}</td>
+                     </c:if>
+                     <c:if test="${vo.sub_ins == null}">
+                     <td>담당 강사 미정</td>
+                     </c:if>
                      <td>
                            <fmt:parseDate var='cDate' value="${vo.sub_regdate}" pattern="yyyy-MM-dd"/>
                            <fmt:formatDate value="${cDate }"/>
                      </td>
                        <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
-                     		<td>${vo.sub_status}</td>
+                       <c:choose>
+                       	<c:when test="${vo.sub_status eq 'A'}">
+                     		<td><span class="badge rounded-pill" style="background-color: 	#1E90FF">승인</span></td>
+                       	</c:when>
+                       <c:when test="${vo.sub_status eq 'W'}">
+                     		<td><span class="badge rounded-pill badge-info">대기중</span></td>
+                       	</c:when>
+                       	<c:when test="${vo.sub_status eq 'R'}">
+                     		<td><span class="badge rounded-pill badge-warning">반려</span></td>
+                       	</c:when>
+                       	<c:when test="${vo.sub_status eq 'D'}">
+                     		<td><span class="badge rounded-pill badge-danger">삭제</span></td>
+                       	</c:when>
+                       </c:choose>
                      	</c:if>
+                     	 <td><a><button type="button" class="btn btn-pill btn-outline-danger-2x btn-xs">삭제</button></a></td>
                   </tr>
                </c:forEach>
                         
                       </tbody>
                     </table>
+                    </div>
                   </div>
                 </div>
               </div>

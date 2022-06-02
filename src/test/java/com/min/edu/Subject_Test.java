@@ -44,7 +44,7 @@ public class Subject_Test {
 		log.info("Subject_test JUnit Test 실행");
 	}
 	
-	//과목 등록 (과목정보 입력 - 등록자 입력 - 커리큘럼 입력 - 강사 업데이트)
+	//1) 과목 등록 (과목정보 입력 - 등록자 입력 - 커리큘럼 입력 - 강사 업데이트)
 //	@Test
 	public void subInsertSubjectTest() {
 		log.info("subInsertSubject JUnit Test 실행");
@@ -144,7 +144,7 @@ public class Subject_Test {
 //		log.info("---------- subUpdateInstructor 입력된 담당강사 수 : "+result+" ----------");
 //		System.out.println(result);
 //	}
-	
+	//1-5) 과목 등록시 관리자 승인상태 변경
 //	@Test
 	public void subUpdateStatusATest() {
 		log.info("subUpdateStatusA JUnit Test 실행");
@@ -156,7 +156,7 @@ public class Subject_Test {
 		log.info("---------- subUpdateStatusATest 과목상태 변경된 과목의 수 : "+result+" ----------");
 		System.out.println(result);
 	}
-	
+	//2-1) 관리자의 과목 전체 목록 조회
 //	@Test
 	public void subSelectAllAdminTest() {
 		log.info("subSelectAllAdmin JUnit Test 실행");
@@ -168,13 +168,34 @@ public class Subject_Test {
 				+ " {} ", lists);
 		System.out.println("과목 게시글 조회 : "+lists);
 	}
-
-	@Test
-	public void subSelectDetailTest() {
-		log.info("subSelectDetail JUnit Test 실행");
-		String sub_num = "20220602SUB173";
-
-		SubjectVo sVo =  sDao.subSelectDetail(sub_num);
+	//2-2) 관리자의 과목 상세 조회
+//	@Test
+	public void adminSubjectDetail() {
+		log.info("comSubjectDetail JUnit Test 실행");
+		String sub_num = "20220602SUB174";
+		SubjectVo sVo =  sDao.adminSubjectDetail(sub_num);
 		System.out.println(sVo);
 	}
+	//2-3) 일반회원의 과목 전체 목록 조회
+//	@Test
+	public void subSelectAllUserTest() {
+		log.info("subSelectAllUser JUnit Test 실행");
+		MemberVo mVo = new MemberVo();
+		mVo.setId("DEMO01");
+		List<SubjectVo> lists = sDao.subSelectAllAdmin(mVo);
+		log.info("---------- JUnit Test/Subject_test/subSelectAllUserTest ----------"
+				+ "과목 전체 리스트 :"
+				+ " {} ", lists);
+		System.out.println("과목 게시글 조회 : "+lists);
+	}
+	//2-4) 일반회원의 과목 상세 조회
+//	@Test
+	public void comSubjectDetailTest() {
+		log.info("comSubjectDetail JUnit Test 실행");
+		String sub_num = "20220602SUB174";
+		SubjectVo sVo =  sDao.comSubjectDetail(sub_num);
+		System.out.println(sVo);
+	}
+	
+	
 }

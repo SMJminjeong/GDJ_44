@@ -17,6 +17,10 @@ public interface SubjectService {
 	//과목 조회
 	//2-1) 관리자의 과목 전체목록 조회
 	public List<SubjectVo> subSelectAllAdmin(MemberVo mVo);
-	//2-2) 과목 상세 조회
-	public SubjectVo subSelectDetail(String sub_num);
+	//2-2) 관리자의 과목 상세 조회
+	public SubjectVo adminSubjectDetail(String sub_num);
+	//2-3) 일반회원의 과목 전체목록 조회
+	public List<SubjectVo> subSelectAllUser(MemberVo mVo);
+	//2-4) 일반회원의 과목 상세 조회
+	public SubjectVo comSubjectDetail(String sub_num);
 }

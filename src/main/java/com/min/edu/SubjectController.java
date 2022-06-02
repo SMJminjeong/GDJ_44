@@ -46,21 +46,49 @@ public class SubjectController {
 	private SubjectService sService;
 	
 	//2) 과목 조회
-	//2-1) 과목 전체조회 페이지로 이동
+	//2-1) 관리자 과목 전체조회 페이지로 이동
 	@RequestMapping(value = "/subjectList.do", method = RequestMethod.GET)
 	public String subjectList(MemberVo mVo, Model model) {
-		log.info("********* Welcome Board_Controller boardList! SubjectController 과목전체조회페이지로 이동합니다. subSelectSubjectAll *********");
+		log.info("********* Welcome SubjectController ! subjectList 관리자 과목전체조회페이지로 이동합니다. subSelectAllAdmin *********");
 		List<SubjectVo> lists = sService.subSelectAllAdmin(mVo);
 		model.addAttribute("lists",lists);
 		return "subjectList";
+	}
+	//2-2) 관리자 과목 상세조회
+	@RequestMapping(value = "/adminSubjectDetail.do", method = RequestMethod.GET)
+	public String adminSubjectDetail(@RequestParam String sub_num, String id, Model model, HttpSession session) {
+		log.info("********* Welcome SubjectController! comSubjectDetail 상세조회 subSelectDetail *********");
+		session.setAttribute("sub_num", sub_num);
+		SubjectVo results = sService.comSubjectDetail(sub_num);
+		model.addAttribute("results", results);
+		System.out.println(results);
+		return "adminSubjectDetail";
+	}
+	//2-3) 일반회원 과목 전체조회 페이지로 이동
+	@RequestMapping(value = "/comSubList.do", method = RequestMethod.GET)
+	public String comSubList(MemberVo mVo, Model model) {
+		log.info("********* Welcome SubjectController! comSubList 일반회원 과목전체조회페이지로 이동합니다. subSelectAllUser *********");
+		List<SubjectVo> list = sService.subSelectAllUser(mVo);
+		model.addAttribute("list",list);
+		return "commons/comSubList";
+	}
+	//2-4) 일반회원 과목 상세조회
+	@RequestMapping(value = "/comSubjectDetail.do", method = RequestMethod.GET)
+	public String comSubjectDetail(@RequestParam String sub_num, String id, Model model, HttpSession session) {
+		log.info("********* Welcome SubjectController! comSubjectDetail 상세조회 subSelectDetail *********");
+		session.setAttribute("sub_num", sub_num);
+		SubjectVo result = sService.comSubjectDetail(sub_num);
+		model.addAttribute("result", result);
+		System.out.println(result);
+		return "commons/comSubjectDetail";
 	}
 
 	//1) 과목 등록양식 페이지로 이동
 	@RequestMapping(value = "/subjectInsertForm.do", method = RequestMethod.GET)
 	public String subInsertForm(MemberVo mVo, Model model) {
-		log.info("********* Welcome Board_Controller boardList! subInsertSubject 과목 등록양식 페이지로 이동합니다. subjectInsertForm *********");
+		log.info("********* Welcome SubjectController! subInsertForm 과목 등록양식 페이지로 이동합니다. subjectInsertForm *********");
 
-		return "subjectInsertForm";
+		return "commons/subjectInsertForm";
 	}
 
 }
