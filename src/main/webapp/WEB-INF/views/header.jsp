@@ -207,6 +207,7 @@
                       <li><a href="./subjectList.do">관리자 과목 조회</a></li>
                       <li><a href="./comSubList.do">일반회원 과목 조회</a></li>
                       <li><a href="./subjectList.do">과목 등록</a></li>
+                      <li><a href="./comMyPage.do">마이페이지</a></li>
                     </ul>
                   </li>
                 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.min.edu.vo.BoardVo;
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.RowNumVo;
 import com.min.edu.vo.SubjectVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,12 @@ public class SubjectDaoImpl implements SubjectDao{
 	
 	private final String NS = "com.min.edu.model.mapper.SubjectDaoImpl.";
 
+	//0) 페이징 처리를 위한 과목 전체 갯수 출력
+	@Override
+	public int subjectTotal() {
+		log.info("========== SubjectDaoImpl/subjectTotal ==========");
+		return sqlSession.selectOne(NS+"subjectTotal");
+	}
 	//1) 과목 등록
 	//1-1) 과목 등록시 과목정보(과목명, 과목설명, 과목카테고리코드, 과목등록자ID)입력
 	@Override
@@ -63,10 +70,10 @@ public class SubjectDaoImpl implements SubjectDao{
 	//2) 과목 조회
 	//2-1) 관리자의 과목 전체 목록 조회
 	@Override
-	public List<SubjectVo> subSelectAllAdmin(MemberVo mVo) {
+	public List<SubjectVo> subSelectAllAdmin(RowNumVo rVo) {
 		log.info("========== SubjectDaoImpl/subSelectAllAdmin ==========");
-		log.info("========== subSelectAllAdmin : "+mVo+" ==========");
-		return sqlSession.selectList(NS+"subSelectAllAdmin", mVo);
+		log.info("========== subSelectAllAdmin : "+rVo+" ==========");
+		return sqlSession.selectList(NS+"subSelectAllAdmin", rVo);
 	}
 	//2-2) 관리자의 과목 상세 조회
 	@Override
@@ -89,6 +96,7 @@ public class SubjectDaoImpl implements SubjectDao{
 		log.info("========== comSubjectDetail : "+sub_num+" ==========");
 		return sqlSession.selectOne(NS+"comSubjectDetail", sub_num);
 	}
+
 
 
 }

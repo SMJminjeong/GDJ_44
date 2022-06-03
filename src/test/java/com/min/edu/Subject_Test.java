@@ -160,13 +160,11 @@ public class Subject_Test {
 //	@Test
 	public void subSelectAllAdminTest() {
 		log.info("subSelectAllAdmin JUnit Test 실행");
-		MemberVo mVo = new MemberVo();
-		mVo.setId("ADMIN");
-		List<SubjectVo> lists = sDao.subSelectAllAdmin(mVo);
+//		List<SubjectVo> lists = sDao.subSelectAllAdmin();
 		log.info("---------- JUnit Test/Subject_test/subSelectAllAdminTest ----------"
 				+ "과목 전체 리스트 :"
-				+ " {} ", lists);
-		System.out.println("과목 게시글 조회 : "+lists);
+				+ " {} " /*, lists*/);
+//		System.out.println("과목 게시글 조회 : "+lists);
 	}
 	//2-2) 관리자의 과목 상세 조회
 //	@Test
@@ -178,16 +176,16 @@ public class Subject_Test {
 	}
 	//2-3) 일반회원의 과목 전체 목록 조회
 //	@Test
-	public void subSelectAllUserTest() {
-		log.info("subSelectAllUser JUnit Test 실행");
-		MemberVo mVo = new MemberVo();
-		mVo.setId("DEMO01");
-		List<SubjectVo> lists = sDao.subSelectAllAdmin(mVo);
-		log.info("---------- JUnit Test/Subject_test/subSelectAllUserTest ----------"
-				+ "과목 전체 리스트 :"
-				+ " {} ", lists);
-		System.out.println("과목 게시글 조회 : "+lists);
-	}
+//	public void subSelectAllUserTest() {
+//		log.info("subSelectAllUser JUnit Test 실행");
+//		MemberVo mVo = new MemberVo();
+//		mVo.setId("DEMO01");
+//		List<SubjectVo> lists = sDao.subSelectAllAdmin(mVo);
+//		log.info("---------- JUnit Test/Subject_test/subSelectAllUserTest ----------"
+//				+ "과목 전체 리스트 :"
+//				+ " {} ", lists);
+//		System.out.println("과목 게시글 조회 : "+lists);
+//	}
 	//2-4) 일반회원의 과목 상세 조회
 //	@Test
 	public void comSubjectDetailTest() {

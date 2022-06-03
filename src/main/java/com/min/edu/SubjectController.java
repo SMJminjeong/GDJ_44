@@ -34,6 +34,7 @@ import com.min.edu.model.service.SubjectService;
 import com.min.edu.vo.BoardVo;
 import com.min.edu.vo.FileVo;
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.RowNumVo;
 import com.min.edu.vo.SubjectVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -47,13 +48,28 @@ public class SubjectController {
 	
 	//2) 과목 조회
 	//2-1) 관리자 과목 전체조회 페이지로 이동
-	@RequestMapping(value = "/subjectList.do", method = RequestMethod.GET)
-	public String subjectList(MemberVo mVo, Model model) {
-		log.info("********* Welcome SubjectController ! subjectList 관리자 과목전체조회페이지로 이동합니다. subSelectAllAdmin *********");
-		List<SubjectVo> lists = sService.subSelectAllAdmin(mVo);
-		model.addAttribute("lists",lists);
-		return "subjectList";
+//	@RequestMapping(value = "/subjectList.do", method = RequestMethod.GET)
+//	public String subjectList(MemberVo mVo, Model model) {
+//		log.info("********* Welcome SubjectController ! subjectList 관리자 과목전체조회페이지로 이동합니다. subSelectAllAdmin *********");
+//		List<SubjectVo> lists = sService.subSelectAllAdmin(mVo);
+//		model.addAttribute("lists",lists);
+//		return "subjectList";
+//	}
+	
+	@RequestMapping(value = "/subjectList.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectSubjectAdmin(RowNumVo rVo) {
+		ModelAndView mav = new ModelAndView();
+		log.info("********* Welcome SubjectController ! selectSubjectAdmin 관리자 페이징처리 과목전체조회페이지로 이동합니다. selectSubjectAdmin *********");
+		rVo.setTotal(sService.subjectTotal());
+		List<SubjectVo> subLists = sService.subSelectAllAdmin(rVo);
+		mav.addObject("subLists", subLists);
+		mav.addObject("paging", rVo);
+		mav.setViewName("subjectList");
+		return mav;
 	}
+	
+	
+	
 	//2-2) 관리자 과목 상세조회
 	@RequestMapping(value = "/adminSubjectDetail.do", method = RequestMethod.GET)
 	public String adminSubjectDetail(@RequestParam String sub_num, String id, Model model, HttpSession session) {
@@ -90,5 +106,23 @@ public class SubjectController {
 
 		return "commons/subjectInsertForm";
 	}
+
+	
+//	@RequestMapping(value = "/subInsertSubject.do", method = RequestMethod.POST)
+//	public String subInsertSubject(@RequestParam Map<String, Object> map) {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("sub_title", sub_title);
+//		map.put("sub_content", sub_content);
+//		map.put("cur_version", cur_version);
+//		map.put("cur_time", cur_time);
+//		map.put("cur_level", cur_level);
+//		map.put("cur_detail", cur_detail);
+//		map.put("cur_subcontent", cur_subcontent);
+//		
+//		int n = sService.subInsertSubject1(map);
+//		int m = sService.subInsertSubject2(map);
+//		System.out.println(n,m);
+//		return "redirect:/commons/comSubList.do";
+//	}
 
 }

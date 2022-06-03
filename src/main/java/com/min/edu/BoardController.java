@@ -106,7 +106,14 @@ public class BoardController {
 		
 		return "redirect:/boardList.do";
 	}
-  
+	
+	//4) 마이페이지로 이동
+	@RequestMapping(value = "/comMyPage.do", method = RequestMethod.GET)
+	public String comMyPage() {
+		log.info("********* Welcome Board_Controller comMyPage! 마이페이지로 이동합니다. *********");
+		return "commons/comMyPage";
+	}
+	
     @RequestMapping(value = "/logout.do" , method = RequestMethod.GET)
     public String logout(HttpSession session) {
     	log.info("********* Welcome logout! 로그아웃합니다. *********");

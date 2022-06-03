@@ -8,10 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>과목 페이지</title>
-<script type="text/javascript">
 
-   
-</script>
 </head>
 
 <body>
@@ -22,6 +19,23 @@
       <%@ include file="./header.jsp"  %>
    
     <div class="page-body">
+    
+    <form action="./subjectList.do" method="post" id="frmPaging">
+		<input type="hidden" name="index" id="index" value="${paging.index}">
+		<input type="hidden" name="pageStartNum" id="pageStartNum" value="${paging.pageStartNum}">
+		<input type="hidden" name="pageListNum" id="pageListNum" value="${paging.pageListNum}">
+		<div id="select">
+			<span>
+				<select class="btn btn-primary" id="listCount" name="listCount"
+				onchange="listCnt()">
+					<option>선택</option>
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+				</select>
+			</span>
+		</div>
+		
           <div class="container-fluid">
             <div class="page-header">
               <div class="row">
@@ -38,16 +52,14 @@
                 </div>
               </div>
             </div>
-          </div>
-          <!-- Container-fluid starts-->
-          <div class="container-fluid">
+            
             <div class="row">
               <div class="col-sm-12">
               
                 <div class="card">
   				<div class="card-block row">
                   <div class="table-responsive table-border-radius">
-                    <table class="table table-hover table-sm table-border-vertical">
+                    <table class="table table-hover table-xs table-border-vertical">
                       <thead class="bg-primary">
                         <tr>
 		                     <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
@@ -66,7 +78,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                      <c:forEach var="vo" items="${lists}"  varStatus="vs">
+                      <c:forEach var="vo" items="${subLists}"  varStatus="vs">
                   <tr>
 	                  <c:if test="${mem.auth eq 'ROLE_ADMIN'}">
 	                     <td><input type="checkbox" name="chkVal"></td>
@@ -176,13 +188,97 @@
                     </div>
                   </div>
                 </div>
+                
+            <!-- pagination with active and disabled state-->
+              <div class="col-xl-12">
+                      <ul class="pagination justify-content-center pagination-primary">
+                        <li class="page-item "><a onclick="pageFir()" class="page-link"  href="#"><span><i class="icon-angle-double-left"></i></span></a></li>
+                        <li class="page-item"><a onclick="pagePre(${paging.pageStartNum},${paging.pageList})" class="page-link"  href="#"><span><i class="icon-angle-left"></i></span></a></li>
+                         <c:forEach var="i" begin="${paging.pageStartNum}" end="${paging.count}" step="1">
+                         	<li  onclick="pageIdx(${i})" class="page-item"><a class="page-link" href="#"><span>${i}</span></a></li>
+					  	</c:forEach>
+                        <li class="page-item"><a onclick="pageNes(${paging.pageStartNum},${paging.total},${paging.pageListNum},${paging.pageList})" class="page-link"  href="#"><span><i class="icon-angle-right"></i></span></a></li>
+                        <li class="page-item"><a onclick="pageLa(${paging.pageStartNum},${paging.total},${paging.pageListNum},${paging.pageList})" class="page-link"  href="#"><span><i class="icon-angle-double-right"></i></span></a></li>
+                      </ul>
+              </div>
               </div>
           </div>
        </div>
+ </form>
     </div>
- 
       <%@ include file="./footer.jsp"  %>
       </div>
       </div>
 </body>
+<script type="text/javascript">
+function pageFir(){
+	console.log("처음페이지로 이동");
+	var index = document.getElementById("index");
+	var pageStartNum = document.getElementById("pageStartNum");
+	
+	index.value=0;
+	pageStartNum.value=1;
+	 pagingFrom();
+}
+function pagePre(pageStartNum,pageListNum){
+	console.log("이전 그룹");
+	if(0 < pageStartNum - pageListNum){
+		pageStartNum -= pageListNum
+		var index = document.getElementById("index");
+		var pageStartNum = document.getElementById("pageStartNum");
+		
+		index.value = pageStartNum-1;
+		pageStartNum.value = pageStartNum;
+	}
+	 pagingFrom();
+}
+function pageIdx(idx){
+	console.log("입력 받은 index 값 ", idx);
+	var index = document.getElementById("index");
+	index.value = idx-1;
+	 pagingFrom();
+}
+function pageNes(pageStartNum,total,pageListNum,pageList){
+	console.log("다음 페이지");
+	var idx = Math.ceil(total/pageListNum); // 31/5 => 7
+	var max = Math.ceil(idx/pageList); // 2그룹
+	
+	if(max*pageList > pageStartNum+pageList){
+		pageStartNum += pageList;
+		
+		var index = document.getElementById("index");
+		var pageStartNum = document.getElementById("pageStartNum");
+		
+		index.value = pageStartNum-1;
+		pageStartNum.value=pageStartNum;
+	}
+	 pagingFrom();
+}
+function pageLa(pageStartNum,total,pageListNum,pageList){
+	console.log("마지막 페이지");
+	var idx = Math.ceil(total/pageListNum); // 31/5 7 index
+	var max = Math.ceil(idx/pageList); // 12345|56 => 2묶음
+	
+	while(max*pageList > pNum+pageList){
+		pageStartNum += pageList;
+	}
+	
+	var index = document.getElementById("index");
+	var pageStartNum = document.getElementById("pageStartNum");
+	
+	index.value=idx-1;
+	pageStartNum.value=pageStartNum;
+	 pagingFrom()
+}
+function pagingFrom(){
+	document.getElementById("frmPaging").submit();
+}
+
+function listCnt(){
+	document.getElementById("index").value=0;
+	document.getElementById("pageStartNum").value=1;
+	document.getElementById("pageListNum").value = document.getElementById("listCount").value;
+	pagingFrom();
+}
+</script>
 </html>

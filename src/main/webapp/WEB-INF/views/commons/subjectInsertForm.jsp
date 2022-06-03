@@ -44,13 +44,13 @@
 
               <div class="col-sm-12">
            <div class="card">
-                  	<div class="form theme-form">
+                  	<form class="form theme-form" action="/subInsertSubject.do" method="post">
                   <div class="card-body">
                       <div class="row">
                         <div class="col">
                           <div class="mb-3">
                             <label>과목명</label>
-                            <input class="form-control" type="text" placeholder="과목명 *">
+                            <input class="form-control" type="text" name="sub_title" placeholder="과목명 *">
                           </div>
                         </div>
                       </div>
@@ -66,7 +66,7 @@
 									과목 설명 예시입니다.
                               </div>
                             </div> 
-                            <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" name="sub_content" rows="3"></textarea>
                           </div>
                         </div>
                       </div>
@@ -78,13 +78,13 @@
                         <div class="col-sm-4">
                           <div class="mb-3">
                             <label>과목 버전</label>
-                            <input class="form-control" type="text" placeholder="Enter Subject Version">
+                            <input class="form-control" type="text" name="cur_version" placeholder="Enter Subject Version">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="mb-3">
                             <label>과목 수강 시간</label>
-                            <select class="form-select">
+                          <!--   <select class="form-select">
                               <option>7</option><option>8</option><option>9</option> <option>10</option> <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option>
                               <option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option>
                               <option>27</option><option>28</option><option>29</option><option>30</option><option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option>
@@ -95,13 +95,15 @@
 							  <option>77</option><option>78</option><option>79</option><option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option><option>86</option>
                               <option>87</option><option>88</option><option>89</option><option>90</option><option>91</option><option>92</option><option>93</option><option>94</option><option>95</option><option>96</option>
 							  <option>97</option><option>98</option><option>99</option><option>100</option>
-                            </select>
+                            </select> -->
+                             <input class="form-control" type="text" name="cur_time" placeholder="Enter Subject Time">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="mb-3">
                             <label>과목 난이도</label>
-                    <div class="row">
+                             <input class="form-control" type="text" name="cur_level" placeholder="Enter Subject Level">
+   <!--                  <div class="row">
                       <div class="col">
                         <div class="form-group m-t-15 m-checkbox-inline mb-0">
                           <div class="checkbox checkbox-dark">
@@ -118,7 +120,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                           </div>
                         </div>
                       </div>
@@ -127,7 +129,7 @@
                         <div class="col">
                           <div class="mb-3">
                             <label>커리큘럼 기타내용</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" name="cur_detail" rows="3"></textarea>
                           </div>
                         </div>
                       </div>
@@ -139,14 +141,14 @@
                               <div class="form-control-static">
 									과목에 대한 수강 요청사항 및 수강생과의 약속을 적어주세요!
                               </div>
-                            <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" name="cur_subcontent" rows="3"></textarea>
                           </div>
                         </div>
                       </div>
 
       
                      
-                      <div class="row">
+ <%--                      <div class="row">
                         <div class="col">
                           <div class="mb-3">
                             <label>Upload project file</label>
@@ -157,16 +159,16 @@
                             </form>
                           </div>
                         </div>
-                      </div>
+                      </div> --%>
                       <div class="row">
                         <div class="col">
                           <div class="text-end">
                           	<a  href="./subjectList.do" style="align-content: right;"><input class="btn btn-light" type="button" value="뒤로가기"></a>
-                          	<a  href="" style="align-content: right;"><input class="btn btn-primary" type="button" value="신청하기"></a>
+                          	<button class="btn btn-primary" type="submit" onclick="deleteOne()">등록하기</button>
                           </div>
                         </div>
                         </div>
-                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>
