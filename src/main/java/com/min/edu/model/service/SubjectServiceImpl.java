@@ -21,12 +21,7 @@ public class SubjectServiceImpl implements SubjectService{
 
 	@Autowired
 	private SubjectDao sDao;
-	
-	@Override
-	public int subjectTotal() {
-		log.info("========== SubjectServiceImpl/subjectTotal ==========");
-		return sDao.subjectTotal();
-	}
+
 	
 	@Transactional
 	@Override
@@ -47,10 +42,21 @@ public class SubjectServiceImpl implements SubjectService{
 
 
 	//2) 과목 조회
+	//0) 전체목록 갯수 조회
+	@Override
+	public int subjectTotalAdmin() {
+		log.info("========== SubjectServiceImpl/subjectTotalAdmin 관리자의 과목 전체목록 갯수 ==========");
+		return sDao.subjectTotalAdmin();
+	}
+	@Override
+	public int subjectTotalUser() {
+		log.info("========== SubjectServiceImpl/subjectTotalUser 관리자의 과목 전체목록 갯수 ==========");
+		return sDao.subjectTotalUser();
+	}
 	//2-1) 관리자의 과목 전체목록 조회
 	@Override
 	public List<SubjectVo> subSelectAllAdmin(RowNumVo rVo) {
-		log.info("========== SubjectServiceImpl/subSelectAllAdmin 관리자의 과목 전체목록 조회 ==========");
+		log.info("========== SubjectServiceImpl/subSelectAllAdmin 일반회원의 과목 전체목록 갯수 ==========");
 		return sDao.subSelectAllAdmin(rVo);
 	}
 	//2-1) 관리자의 과목 상세 조회
@@ -61,9 +67,9 @@ public class SubjectServiceImpl implements SubjectService{
 	}
 	//2-3) 일반회원의 과목 전체목록 조회
 	@Override
-	public List<SubjectVo> subSelectAllUser(MemberVo mVo) {
+	public List<SubjectVo> subSelectAllUser(RowNumVo rVo) {
 		log.info("========== SubjectServiceImpl/subSelectAllUser 일반회원의 과목 전체목록 조회 ==========");
-		return sDao.subSelectAllUser(mVo);
+		return sDao.subSelectAllUser(rVo);
 	}
 	//2-4) 일반회원의 과목 상세 조회
 	@Override
@@ -71,6 +77,8 @@ public class SubjectServiceImpl implements SubjectService{
 		log.info("========== SubjectServiceImpl/comSubjectDetail 일반회원의 과목 상세 조회 ==========");
 		return sDao.comSubjectDetail(sub_num);
 	}
+
+
 
 
 

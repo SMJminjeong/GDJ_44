@@ -60,16 +60,22 @@ public class RowNumVo implements Serializable{
 		 */
 		int temp = total - pageListNum*(pageStartNum-1);
 		int min = temp/pageListNum;
+		System.out.println(temp);
+		System.out.println(min);
 		if(temp%pageListNum != 0) {
 			min++;
+			System.out.println("min++해준 값"+min);
 		}
 		
 		if(temp <= pageListNum) { //남아 있는 글의 갯수가 1페이지 이다
 			count = pageStartNum;
-		}else if(min <= pageListNum) {
+			System.out.println("temp <= pageListNum : "+count);
+		}else if(min <= pageList) {
 			count = min + pageStartNum -1;
+			System.out.println("min <= pageListNum : "+count);
 		}else {
-			count = pageListNum +pageStartNum -1;
+			count = pageList +pageStartNum -1;
+			System.out.println("else : "+count);
 		}
 		
 		System.out.println("count index그룹의 끝번호="+count);

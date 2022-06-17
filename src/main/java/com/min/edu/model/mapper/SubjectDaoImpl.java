@@ -24,12 +24,7 @@ public class SubjectDaoImpl implements SubjectDao{
 	
 	private final String NS = "com.min.edu.model.mapper.SubjectDaoImpl.";
 
-	//0) 페이징 처리를 위한 과목 전체 갯수 출력
-	@Override
-	public int subjectTotal() {
-		log.info("========== SubjectDaoImpl/subjectTotal ==========");
-		return sqlSession.selectOne(NS+"subjectTotal");
-	}
+
 	//1) 과목 등록
 	//1-1) 과목 등록시 과목정보(과목명, 과목설명, 과목카테고리코드, 과목등록자ID)입력
 	@Override
@@ -68,6 +63,18 @@ public class SubjectDaoImpl implements SubjectDao{
 	}
 
 	//2) 과목 조회
+	//0) 페이징 처리를 위한 과목 전체 갯수 출력(관리자)
+	@Override
+	public int subjectTotalAdmin() {
+		log.info("========== SubjectDaoImpl/subjectTotalAdmin ==========");
+		return sqlSession.selectOne(NS+"subjectTotalAdmin");
+	}
+	//0) 페이징 처리를 위한 과목 전체 갯수 출력(일반회원)
+	@Override
+	public int subjectTotalUser() {
+		log.info("========== SubjectDaoImpl/subjectTotalUser ==========");
+		return sqlSession.selectOne(NS+"subjectTotalUser");
+	}
 	//2-1) 관리자의 과목 전체 목록 조회
 	@Override
 	public List<SubjectVo> subSelectAllAdmin(RowNumVo rVo) {
@@ -84,10 +91,10 @@ public class SubjectDaoImpl implements SubjectDao{
 	}
 	//2-3) 일반회원의 과목 전체 목록 조회
 	@Override
-	public List<SubjectVo> subSelectAllUser(MemberVo mVo) {
+	public List<SubjectVo> subSelectAllUser(RowNumVo rVo) {
 		log.info("========== SubjectDaoImpl/subSelectAllUser ==========");
-		log.info("========== subSelectAllUser : "+mVo+" ==========");
-		return sqlSession.selectList(NS+"subSelectAllUser", mVo);
+		log.info("========== subSelectAllUser : "+rVo+" ==========");
+		return sqlSession.selectList(NS+"subSelectAllUser", rVo);
 	}
 	//2-4) 일반회원의 과목 상세 조회
 	@Override
@@ -96,6 +103,7 @@ public class SubjectDaoImpl implements SubjectDao{
 		log.info("========== comSubjectDetail : "+sub_num+" ==========");
 		return sqlSession.selectOne(NS+"comSubjectDetail", sub_num);
 	}
+
 
 
 

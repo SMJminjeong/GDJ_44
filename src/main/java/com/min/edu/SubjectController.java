@@ -55,36 +55,67 @@ public class SubjectController {
 //		model.addAttribute("lists",lists);
 //		return "subjectList";
 //	}
-	
-	@RequestMapping(value = "/subjectList.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectSubjectAdmin(RowNumVo rVo) {
-		ModelAndView mav = new ModelAndView();
-		log.info("********* Welcome SubjectController ! selectSubjectAdmin 관리자 페이징처리 과목전체조회페이지로 이동합니다. selectSubjectAdmin *********");
-		rVo.setTotal(sService.subjectTotal());
-		List<SubjectVo> subLists = sService.subSelectAllAdmin(rVo);
-		mav.addObject("subLists", subLists);
-		mav.addObject("paging", rVo);
-		mav.setViewName("subjectList");
-		return mav;
+	//mpa
+//	@RequestMapping(value = "/subjectList.do", method = {RequestMethod.GET, RequestMethod.POST})
+//	public ModelAndView selectSubjectAdmin(RowNumVo rVo) {
+//		ModelAndView mav = new ModelAndView();
+//		log.info("********* Welcome SubjectController ! selectSubjectAdmin 관리자 페이징처리 과목전체조회페이지로 이동합니다. selectSubjectAdmin *********");
+//		rVo.setTotal(sService.subjectTotal());
+//		List<SubjectVo> subLists = sService.subSelectAllAdmin(rVo);
+//		mav.addObject("subLists", subLists);
+//		mav.addObject("paging", rVo);
+//		mav.setViewName("subjectList");
+//		return mav;
+//	}
+	//spa
+	@RequestMapping(value = "/subjectList.do", method = RequestMethod.GET)
+	public String subjectList(HttpSession session, Model model) {
+		MemberVo mVo = (MemberVo) session.getAttribute("mem");
+		log.info("SubjectController subjectList");
+		log.info("SubjectController subjectList 세션확인 : {}", mVo);
+		
+		List<SubjectVo> lists = null;
+		RowNumVo rowVo = null;
+		
+		if(session.getAttribute("row")==null) {
+			rowVo = new  RowNumVo();
+		}else {
+			rowVo=(RowNumVo) session.getAttribute("row");
+		}
+		
+		if(mVo.getAuth().equals("ROLE_ADMIN")) {
+			rowVo.setTotal(sService.subjectTotalAdmin());
+			lists=sService.subSelectAllAdmin(rowVo);
+		}else if(mVo.getAuth().equals("ROLE_USER")){
+			rowVo.setTotal(sService.subjectTotalUser());
+			lists=sService.subSelectAllUser(rowVo);
+		}
+		
+		model.addAttribute("lists",lists);
+		model.addAttribute("row",rowVo);
+		
+		return "subjectList";
 	}
 	
 	
 	
 	//2-2) 관리자 과목 상세조회
-	@RequestMapping(value = "/adminSubjectDetail.do", method = RequestMethod.GET)
-	public String adminSubjectDetail(@RequestParam String sub_num, String id, Model model, HttpSession session) {
-		log.info("********* Welcome SubjectController! comSubjectDetail 상세조회 subSelectDetail *********");
-		session.setAttribute("sub_num", sub_num);
-		SubjectVo results = sService.comSubjectDetail(sub_num);
-		model.addAttribute("results", results);
-		System.out.println(results);
-		return "adminSubjectDetail";
-	}
+//	@RequestMapping(value = "/adminSubjectDetail.do", method = RequestMethod.GET)
+//	public String adminSubjectDetail(@RequestParam String sub_num, String id, Model model, HttpSession session) {
+//		log.info("********* Welcome SubjectController! adminSubjectDetail 상세조회 subSelectDetail *********");
+//		session.setAttribute("sub_num", sub_num);
+//		SubjectVo results = sService.adminSubjectDetail(sub_num);
+//		model.addAttribute("results", results);
+//		System.out.println(results);
+//		return "adminSubjectDetail";
+//	}
+	
+	
 	//2-3) 일반회원 과목 전체조회 페이지로 이동
 	@RequestMapping(value = "/comSubList.do", method = RequestMethod.GET)
-	public String comSubList(MemberVo mVo, Model model) {
+	public String comSubList(RowNumVo rVo, Model model) {
 		log.info("********* Welcome SubjectController! comSubList 일반회원 과목전체조회페이지로 이동합니다. subSelectAllUser *********");
-		List<SubjectVo> list = sService.subSelectAllUser(mVo);
+		List<SubjectVo> list = sService.subSelectAllUser(rVo);
 		model.addAttribute("list",list);
 		return "commons/comSubList";
 	}

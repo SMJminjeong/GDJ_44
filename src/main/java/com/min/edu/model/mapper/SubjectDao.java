@@ -11,8 +11,7 @@ import com.min.edu.vo.SubjectVo;
 
 public interface SubjectDao {
 	
-	//0) 페이징 처리를 위한 전체 갯수 출력
-	public int subjectTotal();
+
 	//1) 과목 등록
 	//1-1) 과목 등록시 과목정보(과목명, 과목설명, 과목카테고리코드, 과목등록자ID)입력
 	public int subInsertSubject(Map<String, Object> map);
@@ -25,13 +24,17 @@ public interface SubjectDao {
 	//1-5) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
 	public int subUpdateStatusA(Map<String, Object> map);
 	
+	
 	//2) 과목 조회
+	//0) 페이징 처리를 위한 전체 갯수 출력
+	public int subjectTotalAdmin();
+	public int subjectTotalUser();
 	//2-1) 관리자의 과목 전체목록 조회
 	public List<SubjectVo> subSelectAllAdmin(RowNumVo rVo);
 	//2-4) 관리자의 과목 상세 조회
 	public SubjectVo adminSubjectDetail(String sub_num);
 	//2-3) 일반회원의 과목 전체목록 조회
-	public List<SubjectVo> subSelectAllUser(MemberVo mVo);
+	public List<SubjectVo> subSelectAllUser(RowNumVo rVo);
 	//2-4) 일반회원의 과목 상세 조회
 	public SubjectVo comSubjectDetail(String sub_num);
 }
